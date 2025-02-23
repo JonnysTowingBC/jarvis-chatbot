@@ -83,12 +83,12 @@
     <button id="chatbot-button">💬</button>
     <div id="chatbot-container">
         <div id="chatbot-header">
-            Jarvis - Towing Assistant
+            Jarvis - Jonny's Towing Assistant
             <button id="close-chatbot">✖</button>
         </div>
         <div id="chatbot-messages"></div>
         <div id="chatbot-input-container">
-            <input type="text" id="chatbot-input" placeholder="Type your question...">
+            <input type="text" id="chatbot-input" placeholder="Hi, I'm Jarvis, how may I be of assistance...">
             <button id="chatbot-send">Send</button>
         </div>
     </div>
@@ -105,7 +105,7 @@
         });
         document.getElementById("chatbot-send").addEventListener("click", async function() {
             if (chatCount >= dailyLimit) {
-                alert("Daily chat limit reached. Please try again tomorrow.");
+                alert("Our Daily chat limit has been reached. Please give us a call (604)398-8866.");
                 return;
             }
             
@@ -119,7 +119,7 @@
             chatCount++;
             
             if (userMessage.includes("price") || userMessage.includes("cost") || userMessage.includes("rate")) {
-                messagesContainer.innerHTML += `<p><strong>Jarvis:</strong> Sorry, but I cannot provide pricing information. Please contact us directly for details.</p>`;
+                messagesContainer.innerHTML += `<p><strong>Jarvis:</strong> Sorry, but I can't provide that as each situation is unique. Please call us for an accurate quote.</p>`;
                 return;
             }
             
@@ -128,12 +128,12 @@
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer YOUR_OPENAI_API_KEY`
+                        "Authorization": `Bearer YOUR_OPENAI_API_KEY
                     },
                     body: JSON.stringify({
                         model: model,
                         messages: [
-                            { role: "system", content: "You are Jarvis, a customer service chatbot for Jonny's Towing & Recovery Ltd. \n\nBusiness Information:\n- **Business Hours:** Monday - Friday, 8 AM - 6 PM. Emergency towing available 24/7.\n- **Services Offered:** Flatbed towing, roadside assistance, jump starts, lockouts, and long-distance towing.\n- **Service Areas:** Richmond, Vancouver, Burnaby, and surrounding areas.\n- **Phone Number:** (604) 398-8866.\n- **Policies:** No price estimates over chat; for quotes, call directly.\n\nYou only answer questions related to towing and roadside assistance. If a question is unrelated, politely redirect the user." },
+                            { role: "system", content: "You are Jarvis, a customer service chatbot for Jonny's Towing & Recovery Ltd. \n\nBusiness Information:\n- **Business Hours:** Emergency towing & Roadside Assistance available 24/7.\n- **Services Offered:** Flatbed towing, roadside assistance, jump starts, lockouts, fuel delivery, tire changes, vehicle winching/ recovery and more.\n- **Service Areas:** Richmond British Columbia and surrounding areas.\n- **Phone Number:** (604) 398-8866.\n- **Policies:** No price estimates over chat; for quotes, call directly.\n\nYou only answer questions related to towing and roadside assistance. If a question is unrelated, politely redirect the user." },
                             { role: "user", content: userMessage }
                         ],
                         max_tokens: 75
